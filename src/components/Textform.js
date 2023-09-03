@@ -4,18 +4,29 @@ import React, {useState} from 'react'
 export default function Textform(props) {
     const [text,setText] = useState("enter the text")
     const handleUpClick = ()=>{
-        console.log("on change clicked")
         let convertedText = text.toUpperCase()
         setText(convertedText) 
     }
     const handleLoClick = ()=>{
-        console.log("on change clicked")
         let convertedText = text.toLowerCase()
         setText(convertedText) 
+    }
+    const clearText = ()=>{
+        let convertedText = ''
+        setText(convertedText) 
+    }
+    const copyText = ()=>{
+        let copiedText = document.getElementById("myBox")
+        copiedText.select()
+        navigator.clipboard.writeText(copiedText.value) 
     }
     const handleOnChange = (event)=>{
         console.log("on change clicked")
         setText(event.target.value)
+    }
+    const handleExtraSpaces = ()=>{
+        let newText = text.split(/[ ]+/)
+        setText(newText.join(" "))
     }
   return (
     <>
@@ -26,7 +37,9 @@ export default function Textform(props) {
             </div>
             <button onClick={handleUpClick} className="btn btn-primary mx-2">Change to Uppercase</button>
             <button onClick={handleLoClick} className="btn btn-primary mx-2">Change to lowercase</button>
-
+            <button onClick={clearText} className="btn btn-primary mx-2">Clear Text</button>
+            <button onClick={copyText} className="btn btn-primary mx-2">Copy Text</button>
+            <button onClick={handleExtraSpaces} className="btn btn-primary mx-2">Handle extra spaces</button>
 
         </div>
         <div className='container my-3'>
