@@ -19,9 +19,8 @@ export default function Textform(props) {
         props.showAlert("Success","cleared text")
     }
     const copyText = ()=>{
-        let copiedText = document.getElementById("myBox")
-        copiedText.select()
-        navigator.clipboard.writeText(copiedText.value) 
+
+        navigator.clipboard.writeText(text) 
         document.getSelection().removeAllRanges()
         props.showAlert("Success","copied to clipboard")
     }
@@ -51,7 +50,7 @@ export default function Textform(props) {
         </div>
         <div className='container my-3' style={{color:props.mode==='dark'?'white':'#052645'}}>
         <h1>Your Text summary</h1>
-        <p>you have entered {text.split(/[\s+]/).filter((element)=>{return element.length!==0}).length} word and {text.length} characters </p>
+        <p>you have entered {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} word and {text.length} characters </p>
         <p> estimated time to read: {0.008*text.split(' ').filter((element)=>{return element.length!==0}).length}</p>
         <h2>Preview</h2>
         <p>{text.length>0 ? text:'Nothing to preview'}</p>
